@@ -2,7 +2,7 @@ import React from "react";
 
 class BadgeForm extends React.Component {
     // state = {};
-    
+
     /* handleChange = e =>{
         this.setState({
             form: {
@@ -10,17 +10,17 @@ class BadgeForm extends React.Component {
             }
         })
     }*/
-    render () {
+    render() {
         return (
             <div className="">
                 <h1>New Attendant</h1>
-                <form >
+                <form onSubmit={this.props.onSubmit}>
                     <div className="form-group">
                         <label>First Name</label>
-                        <input 
+                        <input
                             onChange={this.props.onChange}
-                            type="text" 
-                            className="form-control" 
+                            type="text"
+                            className="form-control"
                             name="firstName"
                             value={this.props.formValuesfirstName}
                         />
@@ -28,56 +28,57 @@ class BadgeForm extends React.Component {
 
                     <div className="form-group">
                         <label>Last Name Name</label>
-                        <input 
+                        <input
                             onChange={this.props.onChange}
-                            type="text" 
-                            className="form-control" 
-                            name="lastName" 
+                            type="text"
+                            className="form-control"
+                            name="lastName"
                             value={this.props.formValueslastName}
-
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input 
+                        <input
                             onChange={this.props.onChange}
-                            type="email" 
-                            className="form-control" 
-                            name="email" 
+                            type="email"
+                            className="form-control"
+                            name="email"
                             value={this.props.formValuesemail}
-
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Job Title</label>
-                        <input 
+                        <input
                             onChange={this.props.onChange}
-                            type="text" 
-                            className="form-control" 
-                            name="jobTitle" 
+                            type="text"
+                            className="form-control"
+                            name="jobTitle"
                             value={this.props.formValuesjobTitle}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Twitter</label>
-                        <input 
+                        <input
                             onChange={this.props.onChange}
-                            type="text" 
-                            className="form-control" 
-                            name="twitter" 
+                            type="text"
+                            className="form-control"
+                            name="twitter"
                             value={this.props.formValuestwitter}
                         />
-                    </div>                    
+                    </div>
 
-                    <button                         
+                    <button
                         onClick={this.handleClick}
-                        className="btn btn-primary">Save</button>
+                        className="btn btn-primary"
+                    >
+                        Save
+                    </button>
                 </form>
             </div>
-        )
+        );
     }
 }
 
