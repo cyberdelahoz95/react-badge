@@ -13,7 +13,6 @@ class BadgeForm extends React.Component {
     render() {
         return (
             <div className="">
-                <h1>New Attendant</h1>
                 <form onSubmit={this.props.onSubmit}>
                     <div className="form-group">
                         <label>First Name</label>
@@ -22,7 +21,7 @@ class BadgeForm extends React.Component {
                             type="text"
                             className="form-control"
                             name="firstName"
-                            value={this.props.formValuesfirstName}
+                            value={this.props.formValues.firstName}
                         />
                     </div>
 
@@ -33,7 +32,7 @@ class BadgeForm extends React.Component {
                             type="text"
                             className="form-control"
                             name="lastName"
-                            value={this.props.formValueslastName}
+                            value={this.props.formValues.lastName}
                         />
                     </div>
 
@@ -44,7 +43,7 @@ class BadgeForm extends React.Component {
                             type="email"
                             className="form-control"
                             name="email"
-                            value={this.props.formValuesemail}
+                            value={this.props.formValues.email}
                         />
                     </div>
 
@@ -55,7 +54,7 @@ class BadgeForm extends React.Component {
                             type="text"
                             className="form-control"
                             name="jobTitle"
-                            value={this.props.formValuesjobTitle}
+                            value={this.props.formValues.jobTitle}
                         />
                     </div>
 
@@ -66,7 +65,7 @@ class BadgeForm extends React.Component {
                             type="text"
                             className="form-control"
                             name="twitter"
-                            value={this.props.formValuestwitter}
+                            value={this.props.formValues.twitter}
                         />
                     </div>
 
@@ -76,6 +75,11 @@ class BadgeForm extends React.Component {
                     >
                         Save
                     </button>
+                    {this.props.error && (
+                        <p className="text-danger">
+                            {this.props.error.message}
+                        </p>
+                    )}
                 </form>
             </div>
         );

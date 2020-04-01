@@ -38,6 +38,7 @@ class BadgeNew extends React.Component {
             this.setState({
                 loading: false
             });
+            this.props.history.push("/badges");
         } catch (error) {
             this.setState({
                 loading: false,
@@ -77,10 +78,12 @@ class BadgeNew extends React.Component {
                             />
                         </div>
                         <div className="col-6">
+                            <h1>New Attendant</h1>
                             <BadgeForm
                                 onSubmit={this.handleSubmit}
                                 onChange={this.handleChange}
                                 formValues={this.state.form}
+                                error={this.state.error}
                             />
                         </div>
                     </div>
