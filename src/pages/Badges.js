@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import BadgesList from "../components/BadgesList";
 import PageLoading from "../components/PageLoading";
+import PageError from "../components/PageError";
 
 import "./styles/Badges.css";
 import confLogo from "../images/badge-header.svg";
@@ -30,7 +31,7 @@ class Badges extends React.Component {
       return <PageLoading />;
     }
     if (this.state.error) {
-      return "Error";
+      return <PageError error={this.state.error} />;
     }
     return (
       <React.Fragment>
