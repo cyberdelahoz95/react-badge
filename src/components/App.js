@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 
 import BadgeNew from "../pages/BadgeNew";
 import BadgeEdit from "../pages/BadgeEdit";
+import BadgeDetail from "../pages/BadgeDetailContainer";
 import Badges from "../pages/Badges";
 import NotFound from "../pages/NotFound";
 
@@ -20,6 +21,11 @@ const App = () => {
                         exact
                         path="/badges/:badgeId/edit"
                         component={BadgeEdit}
+                    />
+                    <Route
+                        exact
+                        path="/badges/:badgeId"
+                        component={BadgeDetail}
                     />
                     <Route component={NotFound} />
                 </Switch>
