@@ -6,6 +6,14 @@ import DeleteModal from "../components/DeleteBadgeModal";
 import "./styles/BadgeDetail.css";
 import confLogo from "../images/platziconf-logo.svg";
 
+const useIncreaseCount = max => {
+    const [count, setCount] = React.useState(0);
+    if (count > max) {
+        setCount(0);
+    }
+    return [count, setCount];
+};
+
 const BadgeDetail = ({
     badge,
     onCloseModal,
@@ -13,6 +21,8 @@ const BadgeDetail = ({
     onDeleteBadge,
     modalIsOpen
 }) => {
+    // const [count, setCount] = React.useState(0); // this function returns an array with 2 elements, the state and the function to modify the state, also the function receives the initial state
+    const [count, setCount] = useIncreaseCount(4); // same as above but with custom hook
     return (
         <div>
             <div className="BadgeDetails__hero">
@@ -38,6 +48,14 @@ const BadgeDetail = ({
                         <h2>Actions</h2>
                         <div>
                             <div>
+                                <button
+                                    onClick={() => {
+                                        setCount(count + 1);
+                                    }}
+                                    className="btn btn-primary mr-4"
+                                >
+                                    Likes {count}
+                                </button>
                                 <Link
                                     className="btn btn-primary mb-4"
                                     to={`/badges/${badge.id}/edit`}
