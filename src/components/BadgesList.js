@@ -1,21 +1,62 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/BadgesList.css";
-class BadgeList extends React.Component {
-    render() {
-        if (this.props.badges.length === 0) {
+
+function useSearchBadges(badges) {
+    const [query, setQuery] = React.useState("");
+    const [filterBadges, setFilterBadges] = React.useState(badges);
+    // useMemo is a hook that allows ot store the result of a function for a given parameters to optimize the performance
+    React.useMemo(() => {
+        const result = badges.filter((badge) => {
             return (
-                <div>
-                    <h3>No encontramos badges</h3>
-                    <Link className="btn btn-primary" to="/badges/new">
-                        Create New Badge
-                    </Link>
-                </div>
+                badge.firstName.toLowerCase().includes(query.toLowerCase()) ||
+                badge.lastName.toLowerCase().includes(query.toLowerCase())
             );
-        }
+        });
+        setFilterBadges(result);
+    }, [badges, query]);
+
+    return { query, setQuery, filterBadges };
+}
+
+const BadgeList = ({ badges }) => {
+    const { query, setQuery, filterBadges } = useSearchBadges(badges);
+    if (filterBadges.length === 0) {
         return (
+            <div>
+                <div className="form-group">
+                    <label>Filter</label>
+                    <input
+                        value={query}
+                        onChange={(e) => {
+                            setQuery(e.target.value);
+                        }}
+                        type="text"
+                        className="form-control"
+                    />
+                </div>
+                <h3>No badges were found</h3>
+                <Link className="btn btn-primary" to="/badges/new">
+                    Create New Badge
+                </Link>
+            </div>
+        );
+    }
+    return (
+        <div className="BadgesList">
+            <div className="form-group">
+                <label>Filter</label>
+                <input
+                    value={query}
+                    onChange={(e) => {
+                        setQuery(e.target.value);
+                    }}
+                    type="text"
+                    className="form-control"
+                />
+            </div>
             <ul className="list-unstyled">
-                {this.props.badges.map(badge => {
+                {filterBadges.map((badge) => {
                     return (
                         <li
                             className="BadgesListItem media mb-3"
@@ -40,8 +81,8 @@ class BadgeList extends React.Component {
                     );
                 })}
             </ul>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default BadgeList;
