@@ -12,13 +12,13 @@ class Badges extends React.Component {
     state = {
         loading: true,
         error: null,
-        data: undefined
+        data: undefined,
     };
     componentDidMount() {
         this.fetchData();
         this.intervalId = setInterval(this.fetchData, 5000);
     }
-    componentWillMount() {
+    componentWillUnmount() {
         clearInterval(this.intervalId);
     }
 
@@ -42,11 +42,7 @@ class Badges extends React.Component {
             <React.Fragment>
                 <div className="Badges">
                     <div className="Badges__hero">
-                        <img
-                            className="Badges_conf-logo"
-                            src={confLogo}
-                            alt="Conf Logo"
-                        />
+                        <img className="Badges_conf-logo" src={confLogo} alt="Conf Logo" />
                     </div>
                 </div>
 
